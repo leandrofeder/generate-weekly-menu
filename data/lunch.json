@@ -1,0 +1,22 @@
+[
+  { "name": "Frango grelhado + Arroz integral + Feijão + Salada", "ingredients": ["Frango", "Arroz integral", "Feijão", "Alface", "Tomate"], "proteins": ["frango"] },
+  { "name": "Carne moída refogada + Batata cozida + Brócolis", "ingredients": ["Carne bovina magra", "Batata", "Brócolis"], "proteins": ["bovina"] },
+  { "name": "Omelete (2 ovos) com Legumes + Arroz", "ingredients": ["Ovos", "Tomate", "Arroz"], "proteins": ["ovo"] },
+  { "name": "Frango desfiado + Macarrão integral + Azeite", "ingredients": ["Frango desfiado", "Macarrão integral", "Azeite"], "proteins": ["frango"] },
+  { "name": "Lentilha + Arroz + Couve refogada", "ingredients": ["Lentilha", "Arroz", "Couve"], "proteins": ["vegetariano"] },
+  { "name": "Bife de porco magro + Purê de abóbora + Salada", "ingredients": ["Carne suína magra", "Abóbora", "Pepino"], "proteins": ["porco"] },
+  { "name": "Frango desfiado + Batata doce cozida + Cenoura", "ingredients": ["Frango", "Batata-doce", "Cenoura"], "proteins": ["frango"] },
+  { "name": "Quinoa + Grão-de-bico + Pimentão e Cebola", "ingredients": ["Quinoa", "Grão-de-bico", "Pimentão", "Cebola"], "proteins": ["vegetariano"] },
+  { "name": "Peixe (Tilápia) assado + Arroz + Legumes", "ingredients": ["Tilápia", "Arroz", "Brócolis", "Cenoura"], "proteins": ["peixe"] },
+  { "name": "Sanduíche natural com Queijo cottage + Peito de peru", "ingredients": ["Pão integral", "Queijo cottage", "Peito de peru", "Alface"], "proteins": ["laticinio", "frango"] },
+  { "name": "Frango desfiado + Arroz + Feijão + Cenoura", "ingredients": ["Frango", "Arroz", "Feijão", "Cenoura"], "proteins": ["frango"] },
+  { "name": "Carne moída + Macarrão integral + Molho de tomate", "ingredients": ["Carne bovina magra", "Macarrão integral", "Molho de tomate"], "proteins": ["bovina"] },
+  { "name": "Omelete + Queijo branco + Batata doce cozida", "ingredients": ["Ovos", "Queijo branco", "Batata-doce"], "proteins": ["ovo", "laticinio"] },
+  { "name": "Ovo cozido picado + Salada mista + Azeite", "ingredients": ["Ovo", "Alface", "Tomate", "Pepino", "Azeite", "Limão"], "proteins": ["ovo"] },
+  { "name": "Lentilha + Quinoa cozida + Brócolis no vapor", "ingredients": ["Lentilha", "Quinoa", "Brócolis"], "proteins": ["vegetariano"] },
+  { "name": "Bife de frango grelhado + Purê de batata + Couve", "ingredients": ["Frango", "Batata", "Couve"], "proteins": ["frango"] },
+  { "name": "Carne bovina + Arroz integral + Feijão + Abóbora", "ingredients": ["Carne bovina magra", "Arroz integral", "Feijão", "Abóbora"], "proteins": ["bovina"] },
+  { "name": "Peixe (Tilápia) cozido + Batata cozida + Legumes", "ingredients": ["Tilápia", "Batata", "Cenoura", "Brócolis"], "proteins": ["peixe"] },
+  { "name": "Frango desfiado + Pão integral + Queijo cottage", "ingredients": ["Frango", "Pão integral", "Queijo cottage", "Alface"], "proteins": ["frango", "laticinio"] },
+  { "name": "Grão-de-bico + Arroz + Tomate cebola refogados", "ingredients": ["Grão-de-bico", "Arroz", "Tomate", "Cebola"], "proteins": ["vegetariano"] }
+]

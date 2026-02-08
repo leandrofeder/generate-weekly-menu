@@ -196,7 +196,7 @@ const STATE = {
     },
 
     getMeal(mealType, dayIndex) {
-        return this.currentSelections[mealType] ? .[dayIndex];
+        return this.currentSelections[mealType]?.[dayIndex];
     }
 };
 

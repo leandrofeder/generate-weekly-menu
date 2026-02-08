@@ -181,7 +181,7 @@ const STATE = {
 
     getProteinsList() {
         const set = new Set();
-        for (const mt of["breakfast", "lunch", "snack"]) {
+        for (const mt of ["breakfast", "lunch", "snack"]) {
             for (const opt of this.currentSelections[mt]) {
                 if (!opt) continue;
                 for (const p of opt.proteins) set.add(p);
@@ -196,7 +196,7 @@ const STATE = {
     },
 
     getMeal(mealType, dayIndex) {
-        return this.currentSelections[mealType] ? .[dayIndex];
+        return this.currentSelections[mealType]?.[dayIndex];
     }
 };
 

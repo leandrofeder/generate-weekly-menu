@@ -11,7 +11,10 @@
 
 <body>
     <div class="container">
-        <button class="print-btn" onclick="window.print()">🖨️ Imprimir / PDF</button>
+        <div class="action-buttons">
+            <button class="print-btn" onclick="window.print()">🖨️ Imprimir / PDF</button>
+            <button class="share-btn" onclick="SHARE.openModal()">📱 Compartilhar</button>
+        </div>
 
         <!-- PÁGINA 1: CARDÁPIO SEMANAL -->
         <div class="page">
@@ -200,6 +203,31 @@
             <h2 id="modal-title">Aviso</h2>
             <p id="modal-message"></p>
             <button class="modal-btn" onclick="document.getElementById('notification-modal').classList.add('hidden')">OK</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE COMPARTILHAMENTO -->
+    <div id="share-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="modal-close" onclick="document.getElementById('share-modal').classList.add('hidden')">&times;</button>
+            <div class="modal-icon">📱</div>
+            <h2 id="share-title">Compartilhar Cardápio</h2>
+            <p id="share-message">Escolha como deseja compartilhar seu cardápio:</p>
+            
+            <div class="share-url-container">
+                <label>Link do cardápio:</label>
+                <div class="url-input-wrapper">
+                    <input type="text" id="share-url" readonly class="share-url">
+                    <button class="copy-btn" onclick="SHARE.copyToClipboard()">📋 Copiar</button>
+                </div>
+            </div>
+
+            <div class="share-buttons-container">
+                <button class="share-option-btn whatsapp" onclick="SHARE.shareVia('whatsapp')">📲 WhatsApp</button>
+                <button class="share-option-btn telegram" onclick="SHARE.shareVia('telegram')">✈️ Telegram</button>
+                <button class="share-option-btn email" onclick="SHARE.shareVia('email')">📧 Email</button>
+                <button class="share-option-btn copy" onclick="SHARE.copyToClipboard()">📋 Copiar Link</button>
+            </div>
         </div>
     </div>
 

@@ -600,6 +600,172 @@ body {
     transform: translateY(0);
 }
 
+/* ========================================
+   11.5. BOTÕES DE AÇÃO (Print, Share)
+   ======================================== */
+
+.action-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: var(--spacing-xl) auto;
+}
+
+.share-btn {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-full);
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: var(--spacing-lg);
+    z-index: 100;
+}
+
+.share-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+}
+
+.share-btn:active {
+    transform: translateY(-1px);
+}
+
+/* ========================================
+   11.6. MODAL DE COMPARTILHAMENTO
+   ======================================== */
+
+.modal-content {
+    position: relative;
+}
+
+.share-url-container {
+    margin: var(--spacing-lg) 0;
+    text-align: left;
+}
+
+.share-url-container label {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.url-input-wrapper {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+.share-url {
+    flex: 1;
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    background: var(--primary-light);
+    color: var(--text-dark);
+    word-break: break-all;
+    font-family: 'Courier New', monospace;
+}
+
+.share-url:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.copy-btn {
+    background: #43e97b;
+    color: white;
+    border: none;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.copy-btn:hover {
+    background: #2dd456;
+    transform: translateY(-2px);
+}
+
+.copy-btn:active {
+    transform: translateY(0);
+}
+
+.share-buttons-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+}
+
+.share-option-btn {
+    padding: var(--spacing-md);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    background: white;
+    color: var(--text-dark);
+}
+
+.share-option-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.share-option-btn.whatsapp {
+    border-color: #25d366;
+    color: #25d366;
+}
+
+.share-option-btn.whatsapp:hover {
+    background: #f0fdf4;
+}
+
+.share-option-btn.telegram {
+    border-color: #0088cc;
+    color: #0088cc;
+}
+
+.share-option-btn.telegram:hover {
+    background: #f0f9ff;
+}
+
+.share-option-btn.email {
+    border-color: #d63031;
+    color: #d63031;
+}
+
+.share-option-btn.email:hover {
+    background: #fff5f5;
+}
+
+.share-option-btn.copy {
+    border-color: #43e97b;
+    color: #43e97b;
+}
+
+.share-option-btn.copy:hover {
+    background: #f0fdf4;
+}
+
 
 /* ========================================
    12. PRINT STYLES

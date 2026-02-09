@@ -45,6 +45,129 @@ const NOTIFY = {
 };
 
 /* ========================================
+   0.6. COMPARTILHAMENTO
+   ======================================== */
+const SHARE = {
+    dayNames: ["seg", "ter", "qua", "qui", "sex"],
+    mealTypes: ["breakfast", "lunch", "snack"],
+    
+    // Gera string de compartilhamento
+    generateShareCode() {
+        const parts = [];
+        for (const mealType of this.mealTypes) {
+            const meals = STATE.currentSelections[mealType];
+            for (let dayIdx = 0; dayIdx < meals.length; dayIdx++) {
+                const meal = meals[dayIdx];
+                if (meal) {
+                    const options = (mealType === "breakfast" ? CONFIG.breakfastOptions :
+                                   mealType === "lunch" ? CONFIG.lunchOptions :
+                                   CONFIG.snackOptions);
+                    const recipeIdx = options.findIndex(opt => opt.name === meal.name);
+                    if (recipeIdx !== -1) {
+                        const dayName = this.dayNames[dayIdx];
+                        parts.push(`${mealType.substring(0, 1)}${recipeIdx}-${dayName}`);
+                    }
+                }
+            }
+        }
+        return parts.join(",");
+    },
+    
+    // Decodifica string de compartilhamento e carrega receitas
+    decodeShareCode(code) {
+        if (!code) return false;
+        
+        try {
+            const parts = code.split(",");
+            for (const part of parts) {
+                const match = part.match(/^([blsn])(\d+)-(\w+)$/);
+                if (!match) continue;
+                
+                const typeChar = match[1];
+                const recipeIdx = parseInt(match[2], 10);
+                const dayName = match[3];
+                
+                const dayIdx = this.dayNames.indexOf(dayName);
+                if (dayIdx === -1) continue;
+                
+                let mealType, options;
+                if (typeChar === "b") {
+                    mealType = "breakfast";
+                    options = CONFIG.breakfastOptions;
+                } else if (typeChar === "l") {
+                    mealType = "lunch";
+                    options = CONFIG.lunchOptions;
+                } else if (typeChar === "s") {
+                    mealType = "snack";
+                    options = CONFIG.snackOptions;
+                } else {
+                    continue;
+                }
+                
+                if (recipeIdx >= 0 && recipeIdx < options.length) {
+                    STATE.setMeal(mealType, dayIdx, options[recipeIdx]);
+                }
+            }
+            return true;
+        } catch (e) {
+            console.error("Erro ao decodificar código de compartilhamento:", e);
+            return false;
+        }
+    },
+    
+    // Gera URL com código de compartilhamento
+    getShareUrl() {
+        const code = this.generateShareCode();
+        const baseUrl = window.location.href.split("?")[0];
+        return `${baseUrl}?cardapio=${encodeURIComponent(code)}`;
+    },
+    
+    // Abre modal de compartilhamento
+    openModal() {
+        const modal = document.getElementById("share-modal");
+        const shareUrlInput = document.getElementById("share-url");
+        const shareUrl = this.getShareUrl();
+        
+        if (shareUrlInput) shareUrlInput.value = shareUrl;
+        if (modal) modal.classList.remove("hidden");
+    },
+    
+    // Copia URL para clipboard
+    copyToClipboard() {
+        const shareUrlInput = document.getElementById("share-url");
+        if (shareUrlInput) {
+            shareUrlInput.select();
+            document.execCommand("copy");
+            NOTIFY.show("✅ Sucesso", "Link copiado para a área de transferência!");
+        }
+    },
+    
+    // Compartilha via plataforma específica
+    shareVia(platform) {
+        const url = this.getShareUrl();
+        const text = "Confira meu cardápio semanal saudável! 🥗";
+        
+        let shareUrl = "";
+        switch(platform) {
+            case "whatsapp":
+                shareUrl = `https://wa.me/?text=${encodeURIComponent(text + " " + url)}`;
+                break;
+            case "telegram":
+                shareUrl = `https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`;
+                break;
+            case "email":
+                shareUrl = `mailto:?subject=Meu Cardápio Semanal&body=${encodeURIComponent(text + "\n\n" + url)}`;
+                break;
+            case "copy":
+                this.copyToClipboard();
+                return;
+        }
+        
+        if (shareUrl) window.open(shareUrl, "_blank");
+    }
+};
+
+/* ========================================
    1. LOADER - Carregar dados JSON
    ======================================== */
 const LOADER = {
@@ -378,10 +501,37 @@ const INIT = {
         });
     },
 
+    updateMealUI() {
+        // Atualizar interface com receitas do STATE
+        const mealSections = document.querySelectorAll(".meal-section");
+        mealSections.forEach(section => {
+            const mealType = section.dataset.mealType;
+            const dayCards = Array.from(section.querySelectorAll(".day-card"));
+
+            dayCards.forEach((card, idx) => {
+                const meal = STATE.getMeal(mealType, idx);
+                if (meal) {
+                    const mealTextEl = card.querySelector(".day-meal");
+                    if (mealTextEl) mealTextEl.textContent = meal.name;
+                }
+            });
+        });
+    },
+
     async initialize() {
         await LOADER.initialize();
         this.setupProteinSelector();
         this.setupEventListeners();
+        
+        // Decodificar código de compartilhamento da URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const cardapioCode = urlParams.get("cardapio");
+        if (cardapioCode) {
+            SHARE.decodeShareCode(cardapioCode);
+            // Atualizar interface com receitas carregadas
+            this.updateMealUI();
+        }
+        
         UI.updateIngredientsAndProteins();
     }
 };

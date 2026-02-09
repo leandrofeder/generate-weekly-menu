@@ -210,23 +210,38 @@
     <div id="share-modal" class="modal hidden">
         <div class="modal-content">
             <button class="modal-close" onclick="document.getElementById('share-modal').classList.add('hidden')">&times;</button>
-            <div class="modal-icon">📱</div>
+            <div class="modal-icon">�</div>
             <h2 id="share-title">Compartilhar Cardápio</h2>
-            <p id="share-message">Escolha como deseja compartilhar seu cardápio:</p>
+            <p id="share-message">Envie seu cardápio semanal para outra pessoa</p>
             
             <div class="share-url-container">
-                <label>Link do cardápio:</label>
+                <label>📎 Link do cardápio:</label>
                 <div class="url-input-wrapper">
-                    <input type="text" id="share-url" readonly class="share-url">
-                    <button class="copy-btn" onclick="SHARE.copyToClipboard()">📋 Copiar</button>
+                    <input type="text" id="share-url" readonly class="share-url" placeholder="Gerando link...">
+                    <button class="copy-btn" onclick="SHARE.copyToClipboard()" title="Copiar link para área de transferência">
+                        <span>📋</span>
+                        <span>Copiar</span>
+                    </button>
                 </div>
             </div>
 
             <div class="share-buttons-container">
-                <button class="share-option-btn whatsapp" onclick="SHARE.shareVia('whatsapp')">📲 WhatsApp</button>
-                <button class="share-option-btn telegram" onclick="SHARE.shareVia('telegram')">✈️ Telegram</button>
-                <button class="share-option-btn email" onclick="SHARE.shareVia('email')">📧 Email</button>
-                <button class="share-option-btn copy" onclick="SHARE.copyToClipboard()">📋 Copiar Link</button>
+                <button class="share-option-btn whatsapp" onclick="SHARE.shareVia('whatsapp')" title="Compartilhar via WhatsApp">
+                    <span style="font-size: 1.5rem;">📲</span>
+                    <span>WhatsApp</span>
+                </button>
+                <button class="share-option-btn telegram" onclick="SHARE.shareVia('telegram')" title="Compartilhar via Telegram">
+                    <span style="font-size: 1.5rem;">✈️</span>
+                    <span>Telegram</span>
+                </button>
+                <button class="share-option-btn email" onclick="SHARE.shareVia('email')" title="Compartilhar via Email">
+                    <span style="font-size: 1.5rem;">📧</span>
+                    <span>Email</span>
+                </button>
+                <button class="share-option-btn copy" onclick="SHARE.copyToClipboard()" title="Copiar link">
+                    <span style="font-size: 1.5rem;">📋</span>
+                    <span>Copiar Link</span>
+                </button>
             </div>
         </div>
     </div>
